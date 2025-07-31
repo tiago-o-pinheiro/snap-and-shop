@@ -1,11 +1,13 @@
 "use client";
-import { Camera, Heart, Search, Users } from "lucide-react";
+import { useState } from "react";
+import { Camera, Heart, Search } from "lucide-react";
 import { Header } from "./components/widgets/header/Header";
 import { HeroBanner } from "./components/widgets/hero-banner/HeroBanner";
 import { ImageUpload } from "./components/widgets/image-uploader/ImageUploader";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
+  const router = useRouter();
   const [showResults, setShowResults] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
@@ -19,7 +21,7 @@ const Home = () => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setIsAnalyzing(false);
     // Navigate to search results instead of showing inline results
-    window.location.href = "/search?q=uploaded-image";
+    router.push("/search?q=uploaded-image");
   };
 
   return (
